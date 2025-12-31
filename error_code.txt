@@ -1,0 +1,18 @@
+const express = require("express");
+const app = express();
+const port = 5000;
+
+app.get("/", (req, res) => {
+
+  // Random failure logic (bug simulation)
+  const random = Math.random();
+  if (random < 0.3) {
+    return res.status(500).send("Internal Server Error - Something broke!");
+  }
+
+  res.send("Application is running fine 👍");
+});
+
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
+});
